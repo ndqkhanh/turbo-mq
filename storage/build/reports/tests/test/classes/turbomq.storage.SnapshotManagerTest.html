@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.096s</div>
+<div class="counter">1.598s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,79 +81,79 @@
 <tr>
 <td class="success">cleanupOldSnapshots deletes checkpoint directories from disk</td>
 <td class="success">cleanupDeletesDirectoriesFromDisk()</td>
-<td class="success">0.107s</td>
+<td class="success">0.169s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">cleanupOldSnapshots retains only the N most recent snapshots</td>
 <td class="success">cleanupRetainsOnlyNMostRecent()</td>
-<td class="success">0.120s</td>
+<td class="success">0.185s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">cleanupOldSnapshots with retain &gt;= count removes nothing</td>
 <td class="success">cleanupWithHighRetainRemovesNothing()</td>
-<td class="success">0.079s</td>
+<td class="success">0.110s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createSnapshot with negative index throws</td>
 <td class="success">createSnapshotNegativeIndexThrows()</td>
-<td class="success">0.054s</td>
+<td class="success">0.073s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createSnapshot with negative term throws</td>
 <td class="success">createSnapshotNegativeTermThrows()</td>
-<td class="success">0.052s</td>
+<td class="success">0.066s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createSnapshot produces a checkpoint directory with RocksDB files</td>
 <td class="success">createSnapshotProducesCheckpointDirectory()</td>
-<td class="success">0.080s</td>
+<td class="success">0.134s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">latestSnapshot returns empty when no snapshots exist</td>
 <td class="success">latestSnapshotEmptyWhenNone()</td>
-<td class="success">0.050s</td>
+<td class="success">0.064s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">latestSnapshot returns the highest-index snapshot</td>
 <td class="success">latestSnapshotReturnsHighestIndex()</td>
-<td class="success">0.096s</td>
+<td class="success">0.133s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">listSnapshots returns empty list when no snapshots exist</td>
 <td class="success">listSnapshotsEmptyWhenNone()</td>
-<td class="success">0.050s</td>
+<td class="success">0.067s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">listSnapshots returns snapshots ordered by index descending</td>
 <td class="success">listSnapshotsOrderedByIndexDescending()</td>
-<td class="success">0.098s</td>
+<td class="success">0.136s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">multiple snapshots at different indices create separate directories</td>
 <td class="success">multipleSnapshotsCreateSeparateDirectories()</td>
-<td class="success">0.111s</td>
+<td class="success">0.146s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">readSnapshotChunk reads bytes from the snapshot checkpoint files</td>
 <td class="success">readSnapshotChunkReadsBytes()</td>
-<td class="success">0.084s</td>
+<td class="success">0.144s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">snapshot checkpoint contains consistent data from time of creation</td>
 <td class="success">snapshotContainsConsistentData()</td>
-<td class="success">0.115s</td>
+<td class="success">0.171s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -161,44 +161,44 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>08:31:18.971 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9709786641428666478/db
-08:31:19.002 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9709786641428666478/snapshots/snapshot-10
-08:31:19.057 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18252726419626761923/db
-08:31:19.072 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18252726419626761923/snapshots/snapshot-5
-08:31:19.087 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18252726419626761923/snapshots/snapshot-10
-08:31:19.102 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18252726419626761923/snapshots/snapshot-15
-08:31:19.160 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7610284421757313389/db
-08:31:19.175 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7610284421757313389/snapshots/snapshot-5
-08:31:19.190 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7610284421757313389/snapshots/snapshot-10
-08:31:19.205 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7610284421757313389/snapshots/snapshot-15
-08:31:19.207 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=10
-08:31:19.208 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=5
-08:31:19.261 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit6004679021700931054/db
-08:31:19.311 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14415101464343523018/db
-08:31:19.326 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14415101464343523018/snapshots/snapshot-5
-08:31:19.340 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14415101464343523018/snapshots/snapshot-10
-08:31:19.393 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit10645860807041940557/db
-08:31:19.420 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit10645860807041940557/snapshots/snapshot-10
-08:31:19.471 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4401551464937687128/db
-08:31:19.486 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4401551464937687128/snapshots/snapshot-5
-08:31:19.501 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4401551464937687128/snapshots/snapshot-15
-08:31:19.516 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4401551464937687128/snapshots/snapshot-10
-08:31:19.571 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11836722681786856311/db
-08:31:19.623 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit12944534905151963307/db
-08:31:19.674 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit17431032858359311473/db
-08:31:19.725 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit1319633242918587773/db
-08:31:19.754 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit1319633242918587773/snapshots/snapshot-5
-08:31:19.784 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit1319633242918587773/snapshots/snapshot-10
-08:31:19.838 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3912874670917133233/db
-08:31:19.859 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3912874670917133233/snapshots/snapshot-5
-08:31:19.874 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3912874670917133233/snapshots/snapshot-10
-08:31:19.889 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3912874670917133233/snapshots/snapshot-15
-08:31:19.904 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=20 term=4 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3912874670917133233/snapshots/snapshot-20
-08:31:19.905 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=10
-08:31:19.905 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=5
-08:31:19.957 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit17768039694887016693/db
-08:31:19.985 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit17768039694887016693/snapshots/snapshot-5
-08:31:20.019 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit17768039694887016693/snapshots/snapshot-5
+<pre>09:05:23.157 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13531715706567604312/db
+09:05:23.216 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13531715706567604312/snapshots/snapshot-10
+09:05:23.297 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18092192626845929953/db
+09:05:23.320 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18092192626845929953/snapshots/snapshot-5
+09:05:23.338 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18092192626845929953/snapshots/snapshot-10
+09:05:23.358 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18092192626845929953/snapshots/snapshot-15
+09:05:23.443 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13264866742792201360/db
+09:05:23.468 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13264866742792201360/snapshots/snapshot-5
+09:05:23.488 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13264866742792201360/snapshots/snapshot-10
+09:05:23.510 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13264866742792201360/snapshots/snapshot-15
+09:05:23.525 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=10
+09:05:23.527 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=5
+09:05:23.602 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit6047972401066426180/db
+09:05:23.669 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit6022013576625067177/db
+09:05:23.687 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit6022013576625067177/snapshots/snapshot-5
+09:05:23.706 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit6022013576625067177/snapshots/snapshot-10
+09:05:23.785 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8173206386586025455/db
+09:05:23.832 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8173206386586025455/snapshots/snapshot-10
+09:05:23.918 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit5452886738563736037/db
+09:05:23.936 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit5452886738563736037/snapshots/snapshot-5
+09:05:23.956 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit5452886738563736037/snapshots/snapshot-15
+09:05:23.978 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit5452886738563736037/snapshots/snapshot-10
+09:05:24.062 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7660893193840186529/db
+09:05:24.124 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit15634290400727836638/db
+09:05:24.190 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14449695323711943196/db
+09:05:24.258 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11425583401820722145/db
+09:05:24.298 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11425583401820722145/snapshots/snapshot-5
+09:05:24.334 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11425583401820722145/snapshots/snapshot-10
+09:05:24.415 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9302770949702968599/db
+09:05:24.440 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9302770949702968599/snapshots/snapshot-5
+09:05:24.461 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=10 term=2 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9302770949702968599/snapshots/snapshot-10
+09:05:24.484 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=15 term=3 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9302770949702968599/snapshots/snapshot-15
+09:05:24.507 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=20 term=4 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9302770949702968599/snapshots/snapshot-20
+09:05:24.510 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=10
+09:05:24.513 [Test worker] INFO turbomq.storage.SnapshotManager -- Deleted old snapshot at index=5
+09:05:24.597 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7747047413607228085/db
+09:05:24.637 [Test worker] INFO turbomq.storage.SnapshotManager -- Created snapshot at index=5 term=1 path=/var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7747047413607228085/snapshots/snapshot-5
+09:05:24.688 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7747047413607228085/snapshots/snapshot-5
 </pre>
 </span>
 </div>
@@ -210,7 +210,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 8:31:20 AM</p>
+<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 9:05:24 AM</p>
 </div>
 </div>
 </body>

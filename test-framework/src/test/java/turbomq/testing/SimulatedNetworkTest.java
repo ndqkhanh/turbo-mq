@@ -1,7 +1,6 @@
 package turbomq.testing;
 
 import turbomq.common.NodeId;
-import turbomq.raft.LogEntry;
 import turbomq.raft.RaftMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

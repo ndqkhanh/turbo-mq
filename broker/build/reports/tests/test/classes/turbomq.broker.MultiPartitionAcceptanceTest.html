@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.003s</div>
+<div class="counter">0.004s</div>
 <p>duration</p>
 </div>
 </td>
@@ -84,12 +84,12 @@
 </tr>
 <tr>
 <td class="success">brokerLeaveTriggersPartitionReassignment()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">consumerGroupAssignsPartitionsToConsumers()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -104,7 +104,7 @@
 </tr>
 <tr>
 <td class="success">endToEndTopicCreationAndConsumerGroupAssignment()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -117,25 +117,25 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>08:31:13.248 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'logs' with 4 partitions, rf=1
-08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c1' joined group 'log-consumers' (gen=1), 1 members
-08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c2' joined group 'log-consumers' (gen=2), 2 members
-08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c3' joined group 'log-consumers' (gen=3), 3 members
-08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c2' left group 'log-consumers' (gen=4), 2 remaining
-08:31:13.250 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'critical' with 3 partitions, rf=3
-08:31:13.251 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'events' with 4 partitions, rf=1
-08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a1' joined group 'analytics' (gen=1), 1 members
-08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a2' joined group 'analytics' (gen=2), 2 members
-08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a2' joined group 'analytics' (gen=3), 2 members
-08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'b1' joined group 'billing' (gen=1), 1 members
-08:31:13.252 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 4 partitions, rf=1
-08:31:13.252 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'order-processors' (gen=1), 1 members
-08:31:13.252 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'order-processors' (gen=2), 2 members
-08:31:13.253 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'alerts' with 6 partitions, rf=1
-08:31:13.253 [Test worker] INFO turbomq.broker.PartitionManager -- Rebalanced topic 'alerts': 2 partition moves
-08:31:13.254 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'events' with 6 partitions, rf=1
-08:31:13.254 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'metrics' with 6 partitions, rf=1
-08:31:13.254 [Test worker] INFO turbomq.broker.PartitionManager -- Rebalanced topic 'metrics': 3 partition moves
+<pre>09:05:19.445 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'logs' with 4 partitions, rf=1
+09:05:19.445 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c1' joined group 'log-consumers' (gen=1), 1 members
+09:05:19.445 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c2' joined group 'log-consumers' (gen=2), 2 members
+09:05:19.445 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c3' joined group 'log-consumers' (gen=3), 3 members
+09:05:19.445 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c2' left group 'log-consumers' (gen=4), 2 remaining
+09:05:19.446 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'critical' with 3 partitions, rf=3
+09:05:19.447 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'events' with 4 partitions, rf=1
+09:05:19.447 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a1' joined group 'analytics' (gen=1), 1 members
+09:05:19.447 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a2' joined group 'analytics' (gen=2), 2 members
+09:05:19.447 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a2' joined group 'analytics' (gen=3), 2 members
+09:05:19.447 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'b1' joined group 'billing' (gen=1), 1 members
+09:05:19.448 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 4 partitions, rf=1
+09:05:19.448 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'order-processors' (gen=1), 1 members
+09:05:19.448 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'order-processors' (gen=2), 2 members
+09:05:19.448 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'alerts' with 6 partitions, rf=1
+09:05:19.449 [Test worker] INFO turbomq.broker.PartitionManager -- Rebalanced topic 'alerts': 2 partition moves
+09:05:19.449 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'events' with 6 partitions, rf=1
+09:05:19.449 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'metrics' with 6 partitions, rf=1
+09:05:19.450 [Test worker] INFO turbomq.broker.PartitionManager -- Rebalanced topic 'metrics': 3 partition moves
 </pre>
 </span>
 </div>
@@ -147,7 +147,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 8:31:13 AM</p>
+<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 9:05:19 AM</p>
 </div>
 </div>
 </body>

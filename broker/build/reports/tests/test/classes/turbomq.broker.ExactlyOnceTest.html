@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.007s</div>
+<div class="counter">0.008s</div>
 <p>duration</p>
 </div>
 </td>
@@ -93,13 +93,13 @@
 <tr>
 <td class="success">different producers have independent sequence tracking</td>
 <td class="success">differentProducersIndependent()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">duplicate sequence number is rejected as DUPLICATE</td>
 <td class="success">duplicateSequenceRejected()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -111,7 +111,7 @@
 <tr>
 <td class="success">first write with sequence 0 is accepted</td>
 <td class="success">firstWriteAccepted()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -123,7 +123,7 @@
 <tr>
 <td class="success">getLastSequence returns -1 for unknown producer/partition</td>
 <td class="success">getLastSequenceUnknownReturnsNegOne()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -135,7 +135,7 @@
 <tr>
 <td class="success">same producer can write independently to different partitions</td>
 <td class="success">sameProducerDifferentPartitions()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -153,13 +153,13 @@
 <tr>
 <td class="success">sequential writes are accepted</td>
 <td class="success">sequentialWritesAccepted()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">unknown producer ID is rejected</td>
 <td class="success">unknownProducerRejected()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -167,25 +167,25 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>08:31:13.225 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.227 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.228 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.228 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 2
-08:31:13.228 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 3
-08:31:13.229 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.230 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.230 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.230 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 2
-08:31:13.231 [Test worker] INFO turbomq.broker.IdempotencyManager -- Expired producer 1
-08:31:13.232 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.232 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.233 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.233 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 2
-08:31:13.233 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.233 [Test worker] INFO turbomq.broker.IdempotencyManager -- Expired producer 1
-08:31:13.234 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.234 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
-08:31:13.235 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+<pre>09:05:19.422 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.424 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.425 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.425 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 2
+09:05:19.425 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 3
+09:05:19.426 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.426 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.427 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.427 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 2
+09:05:19.427 [Test worker] INFO turbomq.broker.IdempotencyManager -- Expired producer 1
+09:05:19.428 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.428 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.429 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.429 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 2
+09:05:19.429 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.429 [Test worker] INFO turbomq.broker.IdempotencyManager -- Expired producer 1
+09:05:19.430 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.430 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
+09:05:19.431 [Test worker] DEBUG turbomq.broker.IdempotencyManager -- Allocated producer ID: 1
 </pre>
 </span>
 </div>
@@ -197,7 +197,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 8:31:13 AM</p>
+<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 9:05:19 AM</p>
 </div>
 </div>
 </body>

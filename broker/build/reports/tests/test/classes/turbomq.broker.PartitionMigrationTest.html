@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.010s</div>
+<div class="counter">0.008s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,25 +81,25 @@
 <tr>
 <td class="success">advanceMigration transitions through all states to COMPLETED</td>
 <td class="success">advanceMigrationThroughAllStates()</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">advance past COMPLETED is a no-op</td>
 <td class="success">advancePastCompletedIsNoop()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">completed migration updates partition assignment</td>
 <td class="success">completedMigrationUpdatesAssignment()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createMigration creates a plan in ADDING_LEARNER state</td>
 <td class="success">createMigrationPlanInAddingLearnerState()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -117,19 +117,19 @@
 <tr>
 <td class="success">generateMigrationPlan produces plans to balance partitions onto new broker</td>
 <td class="success">generateMigrationPlanForNewBroker()</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">listActiveMigrations returns only in-progress migrations</td>
 <td class="success">listActiveMigrationsReturnsOnlyInProgress()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">listAllMigrations returns all including completed</td>
 <td class="success">listAllMigrationsReturnsAll()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -147,7 +147,7 @@
 <tr>
 <td class="success">createMigration rejects same source and target</td>
 <td class="success">rejectsSameSourceAndTarget()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -155,60 +155,60 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>08:31:13.265 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.266 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.266 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.266 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
-08:31:13.266 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-2 Node-1 → Node-2
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-2 → CATCHING_UP
-08:31:13.267 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
-08:31:13.268 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.268 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.268 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.268 [Test worker] WARN turbomq.broker.PartitionMigrationManager -- Migration failed: partition=Partition-0 reason=Timeout
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-1 Node-1 → Node-2
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
-08:31:13.269 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
-08:31:13.270 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.271 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.271 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.272 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.272 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-2 Node-3 → Node-4
-08:31:13.274 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.275 [Test worker] WARN turbomq.broker.PartitionMigrationManager -- Migration failed: partition=Partition-0 reason=Replication timeout
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
-08:31:13.275 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-1 Node-1 → Node-2
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
-08:31:13.276 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
+<pre>09:05:19.459 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.459 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.460 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.460 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
+09:05:19.460 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
+09:05:19.460 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
+09:05:19.460 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-2 Node-1 → Node-2
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-2 → CATCHING_UP
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.461 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.461 [Test worker] WARN turbomq.broker.PartitionMigrationManager -- Migration failed: partition=Partition-0 reason=Timeout
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-1 Node-1 → Node-2
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
+09:05:19.462 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
+09:05:19.463 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.464 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.464 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.464 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.465 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-2 Node-3 → Node-4
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.466 [Test worker] WARN turbomq.broker.PartitionMigrationManager -- Migration failed: partition=Partition-0 reason=Replication timeout
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.466 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 6 partitions, rf=1
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-0 Node-1 → Node-3
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Created migration plan: partition=Partition-1 Node-1 → Node-2
+09:05:19.467 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → CATCHING_UP
+09:05:19.468 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → PROMOTING
+09:05:19.468 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → REMOVING_OLD
+09:05:19.468 [Test worker] INFO turbomq.broker.PartitionMigrationManager -- Migration advanced: partition=Partition-0 → COMPLETED
 </pre>
 </span>
 </div>
@@ -220,7 +220,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 8:31:13 AM</p>
+<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 9:05:19 AM</p>
 </div>
 </div>
 </body>

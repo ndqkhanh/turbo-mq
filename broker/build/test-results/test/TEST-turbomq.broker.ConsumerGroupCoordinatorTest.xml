@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="turbomq.broker.ConsumerGroupCoordinatorTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:13" hostname="MacBook-Pro-cua-Khanh.local" time="0.015">
+<testsuite name="turbomq.broker.ConsumerGroupCoordinatorTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-03-28T02:05:19" hostname="MacBook-Pro-cua-Khanh.local" time="0.013">
   <properties/>
-  <testcase name="twoConsumersSplitPartitions()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
+  <testcase name="twoConsumersSplitPartitions()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.002"/>
   <testcase name="heartbeatKeepsConsumerAlive()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
   <testcase name="expiredConsumerIsRemoved()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
   <testcase name="groupsAreIndependent()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
-  <testcase name="getNonexistentGroupGenerationIsZero()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
-  <testcase name="duplicateJoinIsIdempotent()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
-  <testcase name="sameConsumerInDifferentGroups()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
-  <testcase name="leaveGroupTriggersRebalance()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
+  <testcase name="getNonexistentGroupGenerationIsZero()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
+  <testcase name="duplicateJoinIsIdempotent()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
+  <testcase name="sameConsumerInDifferentGroups()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
+  <testcase name="leaveGroupTriggersRebalance()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
   <testcase name="leaveNonexistentConsumerIsNoOp()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
   <testcase name="threeConsumersBalanced()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.002"/>
   <testcase name="roundRobinStrategyDistributesEvenly()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
-  <testcase name="singleConsumerGetsAllPartitions()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
-  <testcase name="getNonexistentGroupReturnsEmptyMembers()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
+  <testcase name="singleConsumerGetsAllPartitions()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
+  <testcase name="getNonexistentGroupReturnsEmptyMembers()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
   <testcase name="leaveLastConsumerEmptiesGroup()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
-  <testcase name="generationIncrementsOnRebalance()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
-  <testcase name="leaveIncrementsGeneration()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
+  <testcase name="generationIncrementsOnRebalance()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
+  <testcase name="leaveIncrementsGeneration()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.001"/>
   <testcase name="heartbeatPreventsExpiry()" classname="turbomq.broker.ConsumerGroupCoordinatorTest" time="0.0"/>
-  <system-out><![CDATA[08:31:13.209 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.209 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.210 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.211 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.211 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.211 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' expired from group 'group1' (session timeout)
-08:31:13.212 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
-08:31:13.212 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'groupB' (gen=1), 1 members
-08:31:13.214 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.214 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=2), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupB' (gen=1), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-3' joined group 'group1' (gen=3), 3 members
-08:31:13.219 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.219 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.220 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.221 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
-08:31:13.223 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+  <system-out><![CDATA[09:05:19.408 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.408 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.409 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.410 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.410 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.410 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' expired from group 'group1' (session timeout)
+09:05:19.411 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
+09:05:19.411 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'groupB' (gen=1), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=2), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupB' (gen=1), 1 members
+09:05:19.414 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.414 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.414 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-3' joined group 'group1' (gen=3), 3 members
+09:05:19.417 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.417 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.418 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.419 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.419 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.419 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

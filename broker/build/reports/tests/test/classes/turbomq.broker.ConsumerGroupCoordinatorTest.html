@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.008s</div>
+<div class="counter">0.011s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">duplicateJoinIsIdempotent()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -89,17 +89,17 @@
 </tr>
 <tr>
 <td class="success">generationIncrementsOnRebalance()</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">getNonexistentGroupGenerationIsZero()</td>
 <td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">getNonexistentGroupReturnsEmptyMembers()</td>
+<td class="success">getNonexistentGroupGenerationIsZero()</td>
 <td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getNonexistentGroupReturnsEmptyMembers()</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -119,12 +119,12 @@
 </tr>
 <tr>
 <td class="success">leaveGroupTriggersRebalance()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">leaveIncrementsGeneration()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -144,12 +144,12 @@
 </tr>
 <tr>
 <td class="success">sameConsumerInDifferentGroups()</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">singleConsumerGetsAllPartitions()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -159,7 +159,7 @@
 </tr>
 <tr>
 <td class="success">twoConsumersSplitPartitions()</td>
-<td class="success">0.001s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -167,35 +167,35 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>08:31:13.209 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.209 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.210 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.211 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.211 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.211 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' expired from group 'group1' (session timeout)
-08:31:13.212 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
-08:31:13.212 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'groupB' (gen=1), 1 members
-08:31:13.214 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.214 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=2), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupB' (gen=1), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.215 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.216 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-3' joined group 'group1' (gen=3), 3 members
-08:31:13.219 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.219 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.220 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.221 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
-08:31:13.222 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
-08:31:13.223 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+<pre>09:05:19.408 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.408 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.409 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.410 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.410 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.410 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' expired from group 'group1' (session timeout)
+09:05:19.411 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
+09:05:19.411 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'groupB' (gen=1), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=2), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupA' (gen=1), 1 members
+09:05:19.413 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'groupB' (gen=1), 1 members
+09:05:19.414 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.414 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.414 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.415 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-3' joined group 'group1' (gen=3), 3 members
+09:05:19.417 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.417 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.418 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.419 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.419 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.419 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'group1' (gen=2), 2 members
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' left group 'group1' (gen=3), 1 remaining
+09:05:19.420 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'group1' (gen=1), 1 members
 </pre>
 </span>
 </div>
@@ -207,7 +207,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 8:31:13 AM</p>
+<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 9:05:19 AM</p>
 </div>
 </div>
 </body>

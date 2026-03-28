@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.759s</div>
+<div class="counter">2.284s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,77 +79,77 @@
 </thead>
 <tr>
 <td class="success">appendAndReadMessage()</td>
-<td class="success">0.067s</td>
+<td class="success">0.069s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">appendMultipleMessagesInSequence()</td>
-<td class="success">0.064s</td>
+<td class="success">0.103s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">commitAndReadConsumerOffset()</td>
-<td class="success">0.066s</td>
+<td class="success">0.078s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">consumerOffsetDefaultsToZero()</td>
-<td class="success">0.074s</td>
+<td class="success">0.098s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createAndGetPartition()</td>
-<td class="success">0.066s</td>
+<td class="success">0.064s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getExistingPartitionReturnsSameInstance()</td>
-<td class="success">0.086s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">latestOffsetAdvancesAfterAppend()</td>
-<td class="success">0.065s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">latestOffsetStartsAtZero()</td>
-<td class="success">0.068s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">listPartitionsReturnsCreatedPartitions()</td>
-<td class="success">0.486s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">multipleConsumerGroupsHaveIndependentOffsets()</td>
-<td class="success">0.333s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">multiplePartitionsAreIsolated()</td>
-<td class="success">0.082s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">partitionDataPersistedAcrossReopen()</td>
 <td class="success">0.100s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">latestOffsetAdvancesAfterAppend()</td>
+<td class="success">0.104s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">latestOffsetStartsAtZero()</td>
+<td class="success">0.069s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">listPartitionsReturnsCreatedPartitions()</td>
+<td class="success">0.932s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">multipleConsumerGroupsHaveIndependentOffsets()</td>
+<td class="success">0.099s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">multiplePartitionsAreIsolated()</td>
+<td class="success">0.104s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">partitionDataPersistedAcrossReopen()</td>
+<td class="success">0.182s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">readNonExistentOffsetReturnsNull()</td>
-<td class="success">0.067s</td>
+<td class="success">0.094s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">readRangeReturnsMessagesInOrder()</td>
-<td class="success">0.066s</td>
+<td class="success">0.072s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">readRangeWithNoMessagesReturnsEmpty()</td>
-<td class="success">0.069s</td>
+<td class="success">0.116s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -157,39 +157,39 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>08:31:16.909 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14630448357930755997 with 0 partitions
-08:31:16.933 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:16.947 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-3
-08:31:17.027 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4658058331830495612 with 0 partitions
-08:31:17.042 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.093 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16829064963424151032 with 0 partitions
-08:31:17.108 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.162 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8488166174886035247 with 0 partitions
-08:31:17.178 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.230 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16583889382837039233 with 0 partitions
-08:31:17.245 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.296 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit12389198464964191282 with 0 partitions
-08:31:17.311 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.361 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit15183665973992856586 with 0 partitions
-08:31:17.376 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.430 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16819264203192301200 with 0 partitions
-08:31:17.444 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.497 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8572659067955115003 with 0 partitions
-08:31:17.511 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.526 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-1
-08:31:17.581 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14205628985709927562 with 0 partitions
-08:31:17.856 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:17.929 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit15760071175441416307 with 0 partitions
-08:31:17.945 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:18.001 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14925184431055366405 with 0 partitions
-08:31:18.016 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:18.069 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit12922906312349149866 with 0 partitions
-08:31:18.084 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:18.117 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit12922906312349149866 with 1 partitions
-08:31:18.166 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit12455640620974096771 with 0 partitions
-08:31:18.181 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
-08:31:18.233 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4490347209447276515 with 0 partitions
-08:31:18.256 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+<pre>09:05:20.748 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit7608330474594515608 with 0 partitions
+09:05:20.778 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:20.794 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-3
+09:05:20.887 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13064564039703118530 with 0 partitions
+09:05:20.902 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:20.958 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9338904497819771933 with 0 partitions
+09:05:20.973 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.025 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9438104422785220596 with 0 partitions
+09:05:21.040 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.092 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18262410360052451043 with 0 partitions
+09:05:21.108 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.163 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16145159493767107969 with 0 partitions
+09:05:21.184 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.258 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14085392286117334712 with 0 partitions
+09:05:21.287 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.363 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8440233392365799286 with 0 partitions
+09:05:21.386 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.453 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4062906734636910890 with 0 partitions
+09:05:21.474 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.495 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-1
+09:05:21.569 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11279741225622429552 with 0 partitions
+09:05:21.595 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.671 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14212309214740682189 with 0 partitions
+09:05:21.695 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.788 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4058019296589170815 with 0 partitions
+09:05:21.812 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:21.904 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13926411455566607836 with 0 partitions
+09:05:21.931 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:22.006 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit13926411455566607836 with 1 partitions
+09:05:22.087 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit2755307197522505290 with 0 partitions
+09:05:22.111 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+09:05:22.185 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit5452510486979868588 with 0 partitions
+09:05:22.212 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
 </pre>
 </span>
 </div>
@@ -201,7 +201,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 8:31:20 AM</p>
+<a href="http://www.gradle.org">Gradle 8.10.2</a> at Mar 28, 2026, 9:05:24 AM</p>
 </div>
 </div>
 </body>

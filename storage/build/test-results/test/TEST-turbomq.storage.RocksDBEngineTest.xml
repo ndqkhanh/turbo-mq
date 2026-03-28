@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="turbomq.storage.RocksDBEngineTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:18" hostname="MacBook-Pro-cua-Khanh.local" time="0.661">
+<testsuite name="turbomq.storage.RocksDBEngineTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-03-28T02:05:22" hostname="MacBook-Pro-cua-Khanh.local" time="0.856">
   <properties/>
-  <testcase name="putOverwritesExistingValue()" classname="turbomq.storage.RocksDBEngineTest" time="0.051"/>
-  <testcase name="scanReturnsEntriesInOrder()" classname="turbomq.storage.RocksDBEngineTest" time="0.049"/>
-  <testcase name="doubleCloseIsIdempotent()" classname="turbomq.storage.RocksDBEngineTest" time="0.056"/>
-  <testcase name="getNonExistentKeyReturnsNull()" classname="turbomq.storage.RocksDBEngineTest" time="0.048"/>
-  <testcase name="deleteRemovesKey()" classname="turbomq.storage.RocksDBEngineTest" time="0.052"/>
-  <testcase name="dataPersistedAcrossReopen()" classname="turbomq.storage.RocksDBEngineTest" time="0.083"/>
-  <testcase name="writeBatchAppliesAtomically()" classname="turbomq.storage.RocksDBEngineTest" time="0.055"/>
-  <testcase name="prefixScanReturnsMatchingKeys()" classname="turbomq.storage.RocksDBEngineTest" time="0.052"/>
-  <testcase name="scanWithNoMatchingKeysReturnsEmpty()" classname="turbomq.storage.RocksDBEngineTest" time="0.051"/>
-  <testcase name="writeBatchWithDeleteAndPut()" classname="turbomq.storage.RocksDBEngineTest" time="0.049"/>
-  <testcase name="scanRespectsStartAndEndBounds()" classname="turbomq.storage.RocksDBEngineTest" time="0.053"/>
-  <testcase name="putAndGetValue()" classname="turbomq.storage.RocksDBEngineTest" time="0.052"/>
-  <system-out><![CDATA[08:31:18.309 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11558480209735866747
-08:31:18.359 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8096096113296093750
-08:31:18.414 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit14646390230888028950
-08:31:18.465 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit10627417243955427744
-08:31:18.516 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4427608887657569051
-08:31:18.570 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit2361992860332588625
-08:31:18.603 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit2361992860332588625
-08:31:18.657 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16327295752578463465
-08:31:18.711 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit6317044747807855904
-08:31:18.762 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3423428345223471556
-08:31:18.812 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit2454801440299096566
-08:31:18.866 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit12158707275989014235
-08:31:18.919 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16046097458414357960
+  <testcase name="putOverwritesExistingValue()" classname="turbomq.storage.RocksDBEngineTest" time="0.071"/>
+  <testcase name="scanReturnsEntriesInOrder()" classname="turbomq.storage.RocksDBEngineTest" time="0.075"/>
+  <testcase name="doubleCloseIsIdempotent()" classname="turbomq.storage.RocksDBEngineTest" time="0.067"/>
+  <testcase name="getNonExistentKeyReturnsNull()" classname="turbomq.storage.RocksDBEngineTest" time="0.066"/>
+  <testcase name="deleteRemovesKey()" classname="turbomq.storage.RocksDBEngineTest" time="0.062"/>
+  <testcase name="dataPersistedAcrossReopen()" classname="turbomq.storage.RocksDBEngineTest" time="0.109"/>
+  <testcase name="writeBatchAppliesAtomically()" classname="turbomq.storage.RocksDBEngineTest" time="0.067"/>
+  <testcase name="prefixScanReturnsMatchingKeys()" classname="turbomq.storage.RocksDBEngineTest" time="0.062"/>
+  <testcase name="scanWithNoMatchingKeysReturnsEmpty()" classname="turbomq.storage.RocksDBEngineTest" time="0.065"/>
+  <testcase name="writeBatchWithDeleteAndPut()" classname="turbomq.storage.RocksDBEngineTest" time="0.064"/>
+  <testcase name="scanRespectsStartAndEndBounds()" classname="turbomq.storage.RocksDBEngineTest" time="0.065"/>
+  <testcase name="putAndGetValue()" classname="turbomq.storage.RocksDBEngineTest" time="0.069"/>
+  <system-out><![CDATA[09:05:22.289 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit18323253913684243012
+09:05:22.364 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit15745887011503355759
+09:05:22.433 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit2613585598456248359
+09:05:22.500 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4782458111488267143
+09:05:22.567 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3894902578654225956
+09:05:22.633 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3196207116849930632
+09:05:22.675 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit3196207116849930632
+09:05:22.744 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit10649114656658100667
+09:05:22.808 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit15296699391545770487
+09:05:22.876 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit17963183450397301724
+09:05:22.941 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit10016194794971521556
+09:05:23.007 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit4018032831948751673
+09:05:23.073 [Test worker] INFO turbomq.storage.RocksDBEngine -- RocksDB opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit15962726987907075410
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

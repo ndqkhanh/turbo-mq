@@ -1,6 +1,5 @@
 package turbomq.broker;
 
-import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import turbomq.common.NodeId;
 import turbomq.common.PartitionId;
