@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurboMQ — Elastic Distributed Message Queue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:       #090d14;
+      --bg-surface-1:  #0e1420;
+      --bg-surface-2:  #141b27;
+      --bg-surface-3:  #1a2333;
+      --accent:        #27AE60;
+      --accent-dim:    #1d8049;
+      --accent-glow:   rgba(39,174,96,0.18);
+      --accent-glow-sm:rgba(39,174,96,0.08);
+      --text-primary:  #e8edf5;
+      --text-secondary:#8a9ab5;
+      --text-muted:    #4d5f7a;
+      --border:        rgba(255,255,255,0.06);
+      --border-accent: rgba(39,174,96,0.3);
+      --font-display:  'DM Serif Display', Georgia, serif;
+      --font-mono:     'JetBrains Mono', 'Courier New', monospace;
+      --font-body:     'DM Sans', system-ui, sans-serif;
+      --radius-sm:     6px;
+      --radius-md:     12px;
+      --radius-lg:     18px;
+      --transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-surface-3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── Layout helpers ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    section { padding: 96px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── Header / Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(39,174,96,0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-glow-sm);
+      border: 1px solid var(--border-accent);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-tagline {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #060b0f;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #2ec96d;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(39,174,96,0.35);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: color var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    .hero-author {
+      margin-top: 64px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-author::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    /* ── Stats Bar ── */
+    .stats-bar {
+      padding: 56px 0;
+      background: var(--bg-surface-1);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 24px 32px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .section-title em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .section-body {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    /* ── Key Innovation ── */
+    .innovation-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 56px;
+    }
+
+    .innovation-text p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .innovation-text p:last-child { margin-bottom: 0; }
+
+    .innovation-highlight {
+      border-left: 2px solid var(--accent);
+      padding: 16px 20px;
+      background: var(--accent-glow-sm);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 24px 0;
+    }
+
+    .innovation-highlight p {
+      font-size: 14px !important;
+      color: var(--text-primary) !important;
+      margin: 0 !important;
+    }
+
+    .benefit-list {
+      list-style: none;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .benefit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .benefit-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Comparison table */
+    .comparison-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .comparison-card {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+
+    .comparison-card.kafka { border-top: 2px solid #e74c3c; }
+    .comparison-card.turbomq { border-top: 2px solid var(--accent); }
+
+    .comparison-card.turbomq::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-glow-sm);
+      pointer-events: none;
+    }
+
+    .comparison-card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .comparison-card.kafka .comparison-card-label { color: #e74c3c; }
+    .comparison-card.turbomq .comparison-card-label { color: var(--accent); }
+
+    .comparison-card h4 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .comparison-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .comparison-points li {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comparison-points li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .comparison-card.kafka .comparison-points li { color: #c0392b; }
+    .comparison-card.turbomq .comparison-points li { color: var(--accent); }
+
+    /* ── Architecture Diagram ── */
+    .diagram-wrapper {
+      margin-top: 48px;
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      overflow-x: auto;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Override Mermaid dark theme */
+    .mermaid svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ── Component Cards (expandable) ── */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .component-card {
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .component-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: 0 0 32px var(--accent-glow-sm);
+    }
+
+    .component-card.open {
+      border-color: var(--border-accent);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .component-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background var(--transition);
+    }
+
+    .component-header:hover { background: var(--bg-surface-2); }
+
+    .component-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-glow-sm);
+      border: 1px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .component-title-block { flex: 1; }
+
+    .component-title {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .component-subtitle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .component-chevron {
+      color: var(--text-muted);
+      font-size: 12px;
+      transition: transform var(--transition), color var(--transition);
+      font-family: var(--font-mono);
+    }
+
+    .component-card.open .component-chevron {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .component-body {
+      display: none;
+      padding: 0 24px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .component-card.open .component-body { display: block; }
+
+    .component-body p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .feature-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--accent-glow-sm);
+      border: 1px solid var(--border-accent);
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* ── Module Structure ── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .module-card {
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .module-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+    }
+
+    .module-card:hover::before { opacity: 1; }
+
+    .module-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .module-name {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .module-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── Tech Stack ── */
+    .tech-stack-section { text-align: center; }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+
+    .tech-tag:hover {
+      color: var(--accent);
+      border-color: var(--border-accent);
+      background: var(--accent-glow-sm);
+      transform: translateY(-2px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface-1);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--text-primary);
+    }
+
+    .footer-brand span { color: var(--accent); }
+
+    .footer-tagline {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: background var(--transition), border-color var(--transition), backdrop-filter var(--transition);
+    }
+
+    nav.scrolled {
+      background: rgba(9, 13, 20, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent) !important;
+      border: 1px solid var(--border-accent);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), color var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-glow-sm);
+      color: var(--accent) !important;
+    }
+
+    /* ── Code-style block ── */
+    .code-block {
+      background: var(--bg-base);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      overflow-x: auto;
+      margin-top: 16px;
+      line-height: 1.8;
+    }
+
+    .code-block .kw { color: #c792ea; }
+    .code-block .cls { color: #82aaff; }
+    .code-block .fn { color: var(--accent); }
+    .code-block .str { color: #c3e88d; }
+    .code-block .cm { color: var(--text-muted); font-style: italic; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .innovation-layout { grid-template-columns: 1fr; gap: 40px; }
+      .components-grid { grid-template-columns: 1fr; }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 64px 0; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item { border-right: none !important; }
+      .hero { min-height: auto; padding: 120px 0 64px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+
+    /* ── Mermaid diagram overrides ── */
+    .mermaid .node rect,
+    .mermaid .node circle,
+    .mermaid .node polygon {
+      fill: var(--bg-surface-2) !important;
+      stroke: var(--border-accent) !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Turbo<span>MQ</span></a>
+      <ul class="nav-links">
+        <li><a href="#innovation">Innovation</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#modules">Modules</a></li>
+        <li>
+          <a href="https://github.com/ndqkhanh/turbo-mq" class="nav-cta" target="_blank" rel="noopener">
+            GitHub ↗
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-badge">Staff Engineer Portfolio Project</div>
+    <p class="hero-subtitle">Elastic Distributed Message Queue</p>
+    <h1>Turbo<span>MQ</span></h1>
+    <p class="hero-tagline">
+      A distributed message queue where every partition thinks for itself —
+      independent Raft consensus, zero-downtime migration, and
+      virtual-thread-per-partition architecture.
+    </p>
+    <div class="hero-actions">
+      <a href="https://github.com/ndqkhanh/turbo-mq" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        View on GitHub
+      </a>
+      <a href="#innovation" class="btn-ghost">
+        Explore Architecture →
+      </a>
+    </div>
+    <p class="hero-author">Nguyen Dinh Quang Khanh</p>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar" aria-label="Project metrics">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number" data-target="219">0</div>
+        <div class="stat-label">Tests, 0 Failures</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-number">50K+</div>
+        <div class="stat-label">msg/sec per node</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-number" data-target="6">0</div>
+        <div class="stat-label">Modules</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-number">Zero</div>
+        <div class="stat-label">Downtime migration</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY INNOVATION -->
+<section id="innovation" aria-labelledby="innovation-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Core Design</p>
+      <h2 class="section-title" id="innovation-title">Per-Partition <em>Raft Consensus</em></h2>
+      <p class="section-body">
+        The architectural decision that separates TurboMQ from every other JVM-based message broker.
+      </p>
+    </div>
+
+    <div class="innovation-layout">
+      <div class="innovation-text reveal">
+        <p>
+          Unlike Kafka's KRaft mode where a single controller cluster manages leader election for
+          <em>all</em> partitions across the entire broker cluster, TurboMQ runs an
+          <strong>independent Raft group per partition</strong> — drawing direct inspiration from
+          CockroachDB's per-range Raft implementation.
+        </p>
+
+        <div class="innovation-highlight">
+          <p>
+            Each partition is a fully autonomous consensus unit. Leader election in partition A
+            is completely orthogonal to partition B — no shared controller, no coordination
+            bottleneck, no cluster-wide blast radius.
+          </p>
+        </div>
+
+        <p>
+          This architecture unlocks capabilities that a centralized controller can never provide:
+          partitions can be atomically migrated between brokers using a learner-catch-up-promote
+          sequence without any consumer-visible interruption.
+        </p>
+
+        <ul class="benefit-list">
+          <li>Partition leader election is fully independent — no cluster-wide impact</li>
+          <li>Partitions migrate between brokers without stopping reads or writes</li>
+          <li>Failure isolation at the partition level, not the broker level</li>
+          <li>Horizontal scale without re-sharding the controller bottleneck</li>
+        </ul>
+
+        <div class="code-block" aria-label="RaftNode class structure">
+<span class="cm">// Each partition owns its complete Raft state machine</span>
+<span class="kw">class</span> <span class="cls">RaftNode</span> {
+  <span class="fn">preVote</span>()         <span class="cm">// prevent disruptive elections</span>
+  <span class="fn">requestVote</span>()    <span class="cm">// standard Raft election</span>
+  <span class="fn">appendEntries</span>()  <span class="cm">// log replication + heartbeat</span>
+  <span class="fn">installSnapshot</span>() <span class="cm">// catch-up via RocksDB checkpoint</span>
+  <span class="fn">commitIndex</span>       <span class="cm">// per-partition, never shared</span>
+}
+        </div>
+      </div>
+
+      <div class="comparison-cards reveal reveal-delay-2">
+        <div class="comparison-card kafka">
+          <div class="comparison-card-label">Kafka / KRaft</div>
+          <h4>Single Controller Cluster</h4>
+          <ul class="comparison-points">
+            <li>One controller manages all partition leaders</li>
+            <li>Leader election requires controller round-trip</li>
+            <li>Controller failure = cluster-wide impact</li>
+            <li>Partition migration requires full stop</li>
+            <li>Scale ceiling on controller throughput</li>
+          </ul>
+        </div>
+
+        <div class="comparison-card turbomq">
+          <div class="comparison-card-label">TurboMQ</div>
+          <h4>Per-Partition Raft Groups</h4>
+          <ul class="comparison-points">
+            <li>Each partition elects its own leader</li>
+            <li>Election is local, no cluster coordination</li>
+            <li>Broker failure affects only its partitions</li>
+            <li>Live migration via learner promotion</li>
+            <li>Linear scale — add brokers, gain throughput</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" aria-labelledby="arch-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">System Design</p>
+      <h2 class="section-title" id="arch-title">Architecture <em>Diagram</em></h2>
+      <p class="section-body">
+        A full-stack distributed system — from gRPC edge to Raft-replicated RocksDB partitions.
+      </p>
+    </div>
+
+    <div class="diagram-wrapper reveal">
+      <div class="mermaid">
+graph TD
+    P[("Producer Client")]
+    C[("Consumer Client")]
+
+    subgraph GW["gRPC Gateway"]
+        GS["gRPC Server\nProto-defined API"]
+    end
+
+    subgraph BRK["Broker"]
+        PM["PartitionManager\nPlacement · Migration · Rebalance"]
+        GP["GossipProtocol\nSWIM-lite · Failure Detection"]
+        CGC["ConsumerGroupCoordinator\nHeartbeat · Assignment"]
+    end
+
+    subgraph PART["Partition (× N replicas)"]
+        RN["RaftNode\nLeader / Follower / Candidate"]
+        PS["RocksDB PartitionStore\nColumn Family per Partition"]
+        SM["SnapshotManager\nCheckpoint via Hard Links"]
+    end
+
+    P --> GS
+    GS --> BRK
+    BRK --> PART
+    PART --> BRK
+    BRK --> GS
+    GS --> C
+
+    style P fill:#141b27,stroke:#27AE60,color:#e8edf5
+    style C fill:#141b27,stroke:#27AE60,color:#e8edf5
+    style GS fill:#141b27,stroke:#2d3f5a,color:#8a9ab5
+    style PM fill:#0e1420,stroke:#2d3f5a,color:#8a9ab5
+    style GP fill:#0e1420,stroke:#2d3f5a,color:#8a9ab5
+    style CGC fill:#0e1420,stroke:#2d3f5a,color:#8a9ab5
+    style RN fill:#0e1420,stroke:#27AE60,color:#27AE60
+    style PS fill:#0e1420,stroke:#2d3f5a,color:#8a9ab5
+    style SM fill:#0e1420,stroke:#2d3f5a,color:#8a9ab5
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT DEEP DIVE -->
+<section id="components" aria-labelledby="components-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Deep Dive</p>
+      <h2 class="section-title" id="components-title">Component <em>Deep Dive</em></h2>
+      <p class="section-body">
+        Every subsystem engineered from first principles. Click any card to expand the full implementation detail.
+      </p>
+    </div>
+
+    <div class="components-grid" role="list">
+
+      <!-- Raft -->
+      <div class="component-card reveal" role="listitem">
+        <div class="component-header" role="button" tabindex="0" aria-expanded="false" aria-controls="raft-body">
+          <div class="component-icon" aria-hidden="true">⚡</div>
+          <div class="component-title-block">
+            <div class="component-title">Raft Consensus</div>
+            <div class="component-subtitle">raft module</div>
+          </div>
+          <div class="component-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="component-body" id="raft-body">
+          <p>
+            A complete Raft implementation with pre-vote protocol to prevent disruptive elections
+            from network-partitioned nodes. Log replication uses batched AppendEntries RPCs,
+            and the commit index advances only when a quorum acknowledges the entry.
+          </p>
+          <p>
+            InstallSnapshot enables lagging replicas to catch up via RocksDB checkpoint transfer
+            rather than replaying the full log — critical for zero-downtime partition migration
+            where a learner node must reach parity before promotion.
+          </p>
+          <div class="feature-pills">
+            <span class="feature-pill">Pre-vote protocol</span>
+            <span class="feature-pill">Log replication</span>
+            <span class="feature-pill">Commit index tracking</span>
+            <span class="feature-pill">InstallSnapshot RPC</span>
+            <span class="feature-pill">Learner mode</span>
+            <span class="feature-pill">Election timeout jitter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SWIM Gossip -->
+      <div class="component-card reveal reveal-delay-1" role="listitem">
+        <div class="component-header" role="button" tabindex="0" aria-expanded="false" aria-controls="gossip-body">
+          <div class="component-icon" aria-hidden="true">📡</div>
+          <div class="component-title-block">
+            <div class="component-title">SWIM-lite Gossip</div>
+            <div class="component-subtitle">network module</div>
+          </div>
+          <div class="component-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="component-body" id="gossip-body">
+          <p>
+            A SWIM-inspired gossip protocol for membership and failure detection.
+            Nodes probe peers with direct pings; on timeout, k indirect probes are issued through
+            randomly selected intermediaries to distinguish network partition from node failure.
+          </p>
+          <p>
+            Incarnation numbers prevent stale "dead" broadcasts from overwriting live state —
+            a node that receives a dead-declaration about itself immediately increments its
+            incarnation and refutes the claim through gossip dissemination.
+          </p>
+          <div class="feature-pills">
+            <span class="feature-pill">Direct ping</span>
+            <span class="feature-pill">Indirect probe (k=3)</span>
+            <span class="feature-pill">Suspect state</span>
+            <span class="feature-pill">Dead state</span>
+            <span class="feature-pill">Incarnation-based merge</span>
+            <span class="feature-pill">Self-refutation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RocksDB -->
+      <div class="component-card reveal reveal-delay-2" role="listitem">
+        <div class="component-header" role="button" tabindex="0" aria-expanded="false" aria-controls="rocksdb-body">
+          <div class="component-icon" aria-hidden="true">🗄</div>
+          <div class="component-title-block">
+            <div class="component-title">RocksDB Storage</div>
+            <div class="component-subtitle">storage module</div>
+          </div>
+          <div class="component-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="component-body" id="rocksdb-body">
+          <p>
+            Each partition is backed by a dedicated RocksDB column family, providing physical
+            data isolation without the overhead of separate database instances.
+            WriteBatch groups all append operations into atomic commits, ensuring that
+            log entry durability is all-or-nothing.
+          </p>
+          <p>
+            Checkpoint snapshots use hard links — RocksDB's native checkpoint API creates
+            a point-in-time consistent view with near-zero overhead, enabling the InstallSnapshot
+            path to transfer a full partition state to a learner node.
+          </p>
+          <div class="feature-pills">
+            <span class="feature-pill">Column family per partition</span>
+            <span class="feature-pill">WriteBatch atomicity</span>
+            <span class="feature-pill">Checkpoint snapshots</span>
+            <span class="feature-pill">Hard-link efficiency</span>
+            <span class="feature-pill">SST compaction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partition Manager -->
+      <div class="component-card reveal reveal-delay-3" role="listitem">
+        <div class="component-header" role="button" tabindex="0" aria-expanded="false" aria-controls="pm-body">
+          <div class="component-icon" aria-hidden="true">⚖</div>
+          <div class="component-title-block">
+            <div class="component-title">Partition Manager</div>
+            <div class="component-subtitle">broker module</div>
+          </div>
+          <div class="component-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="component-body" id="pm-body">
+          <p>
+            Responsible for initial placement and ongoing rebalancing of partitions across
+            brokers. Round-robin placement distributes new partitions evenly. A greedy
+            rebalancer detects skew and schedules migrations to converge the cluster.
+          </p>
+          <p>
+            Zero-downtime migration follows a four-phase protocol: add the target as a
+            Raft learner → wait for catch-up (log gap below threshold) → promote to voter
+            → remove the source replica. Consumers experience zero interruption because
+            the leader changes only after full replication.
+          </p>
+          <div class="feature-pills">
+            <span class="feature-pill">Round-robin placement</span>
+            <span class="feature-pill">Greedy rebalancer</span>
+            <span class="feature-pill">Learner promotion</span>
+            <span class="feature-pill">Catch-up detection</span>
+            <span class="feature-pill">Zero-downtime migration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consumer Groups -->
+      <div class="component-card reveal" role="listitem">
+        <div class="component-header" role="button" tabindex="0" aria-expanded="false" aria-controls="cg-body">
+          <div class="component-icon" aria-hidden="true">👥</div>
+          <div class="component-title-block">
+            <div class="component-title">Consumer Groups</div>
+            <div class="component-subtitle">broker module</div>
+          </div>
+          <div class="component-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="component-body" id="cg-body">
+          <p>
+            The ConsumerGroupCoordinator manages group membership via heartbeat sessions.
+            When a consumer joins or leaves, a rebalance is triggered: the coordinator
+            collects the current member list and applies the configured assignment strategy
+            to re-distribute partitions.
+          </p>
+          <p>
+            Both Range and RoundRobin strategies are supported. Range assigns contiguous
+            partition ranges per consumer for locality; RoundRobin maximizes evenness.
+            Session expiry is tracked per-member — a missed heartbeat window triggers
+            a coordinated group rebalance without impacting other groups.
+          </p>
+          <div class="feature-pills">
+            <span class="feature-pill">Join/leave rebalance</span>
+            <span class="feature-pill">Heartbeat sessions</span>
+            <span class="feature-pill">Range assignment</span>
+            <span class="feature-pill">RoundRobin assignment</span>
+            <span class="feature-pill">Session expiry</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exactly-Once -->
+      <div class="component-card reveal reveal-delay-1" role="listitem">
+        <div class="component-header" role="button" tabindex="0" aria-expanded="false" aria-controls="eo-body">
+          <div class="component-icon" aria-hidden="true">✓</div>
+          <div class="component-title-block">
+            <div class="component-title">Exactly-Once Delivery</div>
+            <div class="component-subtitle">broker module</div>
+          </div>
+          <div class="component-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="component-body" id="eo-body">
+          <p>
+            Idempotent producers are assigned a stable <code>producerId</code> at session
+            establishment. Each message carries a monotonic sequence number scoped to the
+            (producerId, partition) pair. The broker deduplicates retries by checking the
+            sequence against the last-committed sequence for that producer.
+          </p>
+          <p>
+            This guarantees exactly-once semantics at the storage layer without distributed
+            transactions — a retry of a message that was already committed is silently
+            acknowledged rather than double-written.
+          </p>
+          <div class="feature-pills">
+            <span class="feature-pill">Idempotent producer</span>
+            <span class="feature-pill">producerId assignment</span>
+            <span class="feature-pill">Sequence deduplication</span>
+            <span class="feature-pill">Per-partition tracking</span>
+            <span class="feature-pill">Retry-safe</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODULE STRUCTURE -->
+<section id="modules" aria-labelledby="modules-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Project Structure</p>
+      <h2 class="section-title" id="modules-title">6 <em>Modules</em></h2>
+      <p class="section-body">
+        A clean, dependency-directed module graph — lower modules know nothing about higher ones.
+      </p>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card reveal">
+        <div class="module-number">01</div>
+        <div class="module-name">common</div>
+        <div class="module-desc">
+          Shared primitives, error types, and utilities. Zero external dependencies.
+          Foundation layer imported by all other modules.
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-delay-1">
+        <div class="module-number">02</div>
+        <div class="module-name">test-framework</div>
+        <div class="module-desc">
+          Custom test scaffolding built TDD-first. Houses base fixtures, mock transports,
+          and in-process cluster launchers used across 219 tests.
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-delay-2">
+        <div class="module-number">03</div>
+        <div class="module-name">raft</div>
+        <div class="module-desc">
+          Self-contained Raft state machine — leader election, log replication,
+          pre-vote, InstallSnapshot. No network dependency; transport is injected.
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-delay-3">
+        <div class="module-number">04</div>
+        <div class="module-name">storage</div>
+        <div class="module-desc">
+          RocksDB abstraction layer. Column family management, WriteBatch API,
+          snapshot creation and restoration via checkpoint hard links.
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-delay-4">
+        <div class="module-number">05</div>
+        <div class="module-name">network</div>
+        <div class="module-desc">
+          gRPC server/client wrappers, Protobuf codec, and the SWIM-lite
+          gossip implementation for membership and failure detection.
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-delay-5">
+        <div class="module-number">06</div>
+        <div class="module-name">broker</div>
+        <div class="module-desc">
+          Top-level orchestration. PartitionManager, ConsumerGroupCoordinator,
+          idempotent producer logic, and zero-downtime migration sequencer.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech" class="tech-stack-section" aria-labelledby="tech-title">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Technology</p>
+      <h2 class="section-title" id="tech-title">Built on <em>Battle-tested</em> Primitives</h2>
+      <p class="section-body" style="margin: 0 auto;">
+        No frameworks. No magic. Each technology chosen for a precise reason.
+      </p>
+    </div>
+
+    <div class="tech-tags">
+      <span class="tech-tag reveal">Java 21</span>
+      <span class="tech-tag reveal reveal-delay-1">Virtual Threads</span>
+      <span class="tech-tag reveal reveal-delay-2">gRPC</span>
+      <span class="tech-tag reveal reveal-delay-3">Protobuf</span>
+      <span class="tech-tag reveal reveal-delay-4">Raft Consensus</span>
+      <span class="tech-tag reveal reveal-delay-5">RocksDB</span>
+      <span class="tech-tag reveal">SWIM Gossip</span>
+      <span class="tech-tag reveal reveal-delay-1">Micrometer</span>
+      <span class="tech-tag reveal reveal-delay-2">Prometheus</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Turbo<span>MQ</span></div>
+        <div class="footer-tagline">Built with Java 21 | TDD Red→Green→Refactor | 219 tests, 0 failures</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/ndqkhanh/turbo-mq" target="_blank" rel="noopener">GitHub</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Nav scroll effect ──
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── IntersectionObserver reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── Counter animation for stats ──
+  function animateCounter(el, target, duration) {
+    let start = null;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+
+  const counterEls = document.querySelectorAll('[data-target]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.dataset.target, 10);
+        animateCounter(entry.target, target, 1200);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counterEls.forEach(el => counterObserver.observe(el));
+
+  // ── Expandable component cards ──
+  document.querySelectorAll('.component-header').forEach(header => {
+    const card = header.closest('.component-card');
+    const body = card.querySelector('.component-body');
+
+    const toggle = () => {
+      const isOpen = card.classList.contains('open');
+      card.classList.toggle('open', !isOpen);
+      header.setAttribute('aria-expanded', String(!isOpen));
+    };
+
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
+  // ── Mermaid init ──
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      background: '#090d14',
+      primaryColor: '#141b27',
+      primaryTextColor: '#e8edf5',
+      primaryBorderColor: '#2d3f5a',
+      lineColor: '#27AE60',
+      secondaryColor: '#0e1420',
+      tertiaryColor: '#1a2333',
+      edgeLabelBackground: '#090d14',
+      clusterBkg: '#0e1420',
+      clusterBorder: '#2d3f5a',
+      titleColor: '#e8edf5',
+      nodeTextColor: '#e8edf5',
+      fontFamily: 'JetBrains Mono, monospace',
+      fontSize: '13px'
+    },
+    flowchart: {
+      curve: 'basis',
+      htmlLabels: true,
+      padding: 20
+    }
+  });
+</script>
+</body>
+</html>
