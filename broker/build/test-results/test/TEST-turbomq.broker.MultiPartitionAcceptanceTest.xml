@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.broker.MultiPartitionAcceptanceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:13" hostname="MacBook-Pro-cua-Khanh.local" time="0.006">
+  <properties/>
+  <testcase name="consumerLeaveTriggersRebalanceAndCoversAllPartitions()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.001"/>
+  <testcase name="replicatedTopicHasAllReplicasAssigned()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.0"/>
+  <testcase name="endToEndTopicCreationAndConsumerGroupAssignment()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.0"/>
+  <testcase name="consumerGroupAssignsPartitionsToConsumers()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.0"/>
+  <testcase name="brokerLeaveTriggersPartitionReassignment()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.001"/>
+  <testcase name="createTopicAcrossThreeBrokersAndVerifyDistribution()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.001"/>
+  <testcase name="brokerJoinTriggersPartitionRebalance()" classname="turbomq.broker.MultiPartitionAcceptanceTest" time="0.0"/>
+  <system-out><![CDATA[08:31:13.248 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'logs' with 4 partitions, rf=1
+08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c1' joined group 'log-consumers' (gen=1), 1 members
+08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c2' joined group 'log-consumers' (gen=2), 2 members
+08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c3' joined group 'log-consumers' (gen=3), 3 members
+08:31:13.249 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'c2' left group 'log-consumers' (gen=4), 2 remaining
+08:31:13.250 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'critical' with 3 partitions, rf=3
+08:31:13.251 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'events' with 4 partitions, rf=1
+08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a1' joined group 'analytics' (gen=1), 1 members
+08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a2' joined group 'analytics' (gen=2), 2 members
+08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'a2' joined group 'analytics' (gen=3), 2 members
+08:31:13.251 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'b1' joined group 'billing' (gen=1), 1 members
+08:31:13.252 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'orders' with 4 partitions, rf=1
+08:31:13.252 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-1' joined group 'order-processors' (gen=1), 1 members
+08:31:13.252 [Test worker] INFO turbomq.broker.ConsumerGroupCoordinator -- Consumer 'consumer-2' joined group 'order-processors' (gen=2), 2 members
+08:31:13.253 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'alerts' with 6 partitions, rf=1
+08:31:13.253 [Test worker] INFO turbomq.broker.PartitionManager -- Rebalanced topic 'alerts': 2 partition moves
+08:31:13.254 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'events' with 6 partitions, rf=1
+08:31:13.254 [Test worker] INFO turbomq.broker.PartitionManager -- Created topic 'metrics' with 6 partitions, rf=1
+08:31:13.254 [Test worker] INFO turbomq.broker.PartitionManager -- Rebalanced topic 'metrics': 3 partition moves
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

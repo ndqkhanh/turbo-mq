@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.broker.BrokerMetricsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:13" hostname="MacBook-Pro-cua-Khanh.local" time="0.022">
+  <properties/>
+  <testcase name="recordDuplicateRejected increments duplicate counter" classname="turbomq.broker.BrokerMetricsTest" time="0.014"/>
+  <testcase name="activePartitions gauge reflects current count" classname="turbomq.broker.BrokerMetricsTest" time="0.001"/>
+  <testcase name="recordMigrationStarted and completed increment counters" classname="turbomq.broker.BrokerMetricsTest" time="0.0"/>
+  <testcase name="activeConsumerGroups gauge reflects current count" classname="turbomq.broker.BrokerMetricsTest" time="0.001"/>
+  <testcase name="recordLeaderElection increments election counter" classname="turbomq.broker.BrokerMetricsTest" time="0.001"/>
+  <testcase name="recordSnapshotCreated increments snapshot counter" classname="turbomq.broker.BrokerMetricsTest" time="0.0"/>
+  <testcase name="recordMessageConsumed increments consume counter" classname="turbomq.broker.BrokerMetricsTest" time="0.0"/>
+  <testcase name="recordMessageProduced increments produce counter" classname="turbomq.broker.BrokerMetricsTest" time="0.001"/>
+  <testcase name="activeProducers gauge reflects current count" classname="turbomq.broker.BrokerMetricsTest" time="0.001"/>
+  <system-out><![CDATA[08:31:13.197 [Test worker] DEBUG io.micrometer.common.util.internal.logging.InternalLoggerFactory -- Using SLF4J as the default logging framework
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

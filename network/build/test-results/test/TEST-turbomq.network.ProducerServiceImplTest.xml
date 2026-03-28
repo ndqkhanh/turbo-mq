@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.network.ProducerServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:15" hostname="MacBook-Pro-cua-Khanh.local" time="0.221">
+  <properties/>
+  <testcase name="produceMessageSuccessfully()" classname="turbomq.network.ProducerServiceImplTest" time="0.078"/>
+  <testcase name="produceMultipleMessagesIncrementsOffset()" classname="turbomq.network.ProducerServiceImplTest" time="0.067"/>
+  <testcase name="producedMessageIsReadableFromStore()" classname="turbomq.network.ProducerServiceImplTest" time="0.074"/>
+  <system-out><![CDATA[08:31:15.233 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit17766733031522961039 with 0 partitions
+08:31:15.248 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+08:31:15.249 [Test worker] DEBUG turbomq.network.ProducerServiceImpl -- Produced message to partition 0 at offset 1
+08:31:15.301 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit1004949172480984139 with 0 partitions
+08:31:15.316 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+08:31:15.317 [Test worker] DEBUG turbomq.network.ProducerServiceImpl -- Produced message to partition 0 at offset 1
+08:31:15.317 [Test worker] DEBUG turbomq.network.ProducerServiceImpl -- Produced message to partition 0 at offset 2
+08:31:15.370 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit9972084977976022902 with 0 partitions
+08:31:15.385 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+08:31:15.386 [Test worker] DEBUG turbomq.network.ProducerServiceImpl -- Produced message to partition 0 at offset 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

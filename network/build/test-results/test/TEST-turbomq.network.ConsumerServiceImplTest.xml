@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.network.ConsumerServiceImplTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:13" hostname="MacBook-Pro-cua-Khanh.local" time="0.965">
+  <properties/>
+  <testcase name="fetchMessagesFromOffset()" classname="turbomq.network.ConsumerServiceImplTest" time="0.731"/>
+  <testcase name="fetchWithMaxMessagesLimit()" classname="turbomq.network.ConsumerServiceImplTest" time="0.073"/>
+  <testcase name="commitAndFetchFromConsumerOffset()" classname="turbomq.network.ConsumerServiceImplTest" time="0.088"/>
+  <testcase name="fetchFromEndReturnsEmpty()" classname="turbomq.network.ConsumerServiceImplTest" time="0.071"/>
+  <system-out><![CDATA[08:31:14.548 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit8123227434273776678 with 0 partitions
+08:31:14.570 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+08:31:14.733 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit16348159335129698397 with 0 partitions
+08:31:14.748 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+08:31:14.819 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit2477192096438690582 with 0 partitions
+08:31:14.836 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+08:31:14.894 [Test worker] INFO turbomq.storage.PartitionStoreManager -- PartitionStoreManager opened at /var/folders/vn/6mz0gbtj611dys59tgbwr1gc0000gp/T/junit11642949507904373795 with 0 partitions
+08:31:14.909 [Test worker] INFO turbomq.storage.PartitionStoreManager -- Created partition column family: partition-0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

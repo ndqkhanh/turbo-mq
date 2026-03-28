@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.raft.LeaderElectionAcceptanceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:15" hostname="MacBook-Pro-cua-Khanh.local" time="0.009">
+  <properties/>
+  <testcase name="fiveNodeClusterElectsExactlyOneLeader()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.002"/>
+  <testcase name="allFollowersAgreeOnLeader()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.001"/>
+  <testcase name="threeNodeClusterElectsExactlyOneLeader()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.001"/>
+  <testcase name="reElectionAfterLeaderIsolation()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.002"/>
+  <testcase name="atMostOneLeaderPerTerm()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.001"/>
+  <testcase name="leaderWithMostUpToDateLogWinsElection()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.001"/>
+  <testcase name="splitVoteResolvesOnRetry()" classname="turbomq.raft.LeaderElectionAcceptanceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

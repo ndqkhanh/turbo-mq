@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.broker.BrokerDiscoveryAcceptanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:13" hostname="MacBook-Pro-cua-Khanh.local" time="0.075">
+  <properties/>
+  <testcase name="brokerRecoveryViaIncarnationBump()" classname="turbomq.broker.BrokerDiscoveryAcceptanceTest" time="0.065"/>
+  <testcase name="threeBrokersDiscoverEachOtherViaGossip()" classname="turbomq.broker.BrokerDiscoveryAcceptanceTest" time="0.008"/>
+  <testcase name="brokerFailureDetectedViaGossip()" classname="turbomq.broker.BrokerDiscoveryAcceptanceTest" time="0.0"/>
+  <system-out><![CDATA[08:31:13.141 [Test worker] INFO turbomq.broker.GossipProtocol -- Node Node-2 marked SUSPECT (direct ping failed)
+08:31:13.167 [Test worker] INFO turbomq.broker.GossipProtocol -- Self-refutation: bumped incarnation to 1
+08:31:13.182 [Test worker] INFO turbomq.broker.GossipProtocol -- Node Node-2 marked SUSPECT (direct ping failed)
+08:31:13.182 [Test worker] INFO turbomq.broker.GossipProtocol -- Node Node-2 declared DEAD (suspect timeout expired)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

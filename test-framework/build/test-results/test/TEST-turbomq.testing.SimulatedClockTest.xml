@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="turbomq.testing.SimulatedClockTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-03-28T01:31:20" hostname="MacBook-Pro-cua-Khanh.local" time="0.044">
+  <properties/>
+  <testcase name="scheduleInPastThrows()" classname="turbomq.testing.SimulatedClockTest" time="0.028"/>
+  <testcase name="scheduledTaskFiresAtCorrectTime()" classname="turbomq.testing.SimulatedClockTest" time="0.005"/>
+  <testcase name="startsAtZero()" classname="turbomq.testing.SimulatedClockTest" time="0.001"/>
+  <testcase name="advanceToNextReturnsFalseWhenEmpty()" classname="turbomq.testing.SimulatedClockTest" time="0.0"/>
+  <testcase name="taskScheduledDuringAdvanceFiresIfWithinWindow()" classname="turbomq.testing.SimulatedClockTest" time="0.0"/>
+  <testcase name="pendingTasksReportsCorrectCount()" classname="turbomq.testing.SimulatedClockTest" time="0.001"/>
+  <testcase name="scheduleAfterUsesRelativeDelay()" classname="turbomq.testing.SimulatedClockTest" time="0.001"/>
+  <testcase name="multipleTasksFireInChronologicalOrder()" classname="turbomq.testing.SimulatedClockTest" time="0.001"/>
+  <testcase name="advanceByIncrementsTime()" classname="turbomq.testing.SimulatedClockTest" time="0.001"/>
+  <testcase name="advanceToNextFiresSingleTask()" classname="turbomq.testing.SimulatedClockTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
