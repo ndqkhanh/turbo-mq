@@ -1,7 +1,6 @@
 package turbomq.testing;
 
 import turbomq.common.NodeId;
-import turbomq.raft.RaftMessage;
 
 import java.util.*;
 
