@@ -113,7 +113,7 @@ graph TD
 
 ```bash
 # Clone and start a 3-broker cluster
-git clone https://github.com/example/turbo-mq.git
+git clone https://github.com/ndqkhanh/turbo-mq.git
 cd turbo-mq
 docker compose up -d
 
